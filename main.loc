@@ -1,4 +1,4 @@
-module simpleIO
+module io.simple
 
 import conventions
 

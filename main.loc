@@ -1,12 +1,11 @@
-module io.simple
+module io (*)
 
 import conventions
+import stream
 
 type py Filename = "str"
 
-source Py from "main.py" (
-
-)
+source Py from "main.py" ( )
 
 -- Call a shell command and return the exit code, stderr and stdout
 shellCmd :: [Str] -> (Int, Str, Str)

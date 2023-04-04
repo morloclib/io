@@ -13,8 +13,9 @@ def streamLinesTextF(filename):
 
 #  writeLinesF :: [Str] -> Filename -> ()
 def writeLinesF(xs, filename):
-    for x in xs:
-        print(x, file=filename)
+    with open(filename, "w") as fh:
+        for x in xs:
+            print(x, file=fh)
 
 #  printL :: [Str] -> ()
 def printL(xs):

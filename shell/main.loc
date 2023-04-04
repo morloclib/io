@@ -1,24 +1,13 @@
-module io.shell
+module io.shell (*)
 -- import stream (Stream, takeS)
 -- import core (ifelse)
-
--- export headF
--- export takeS
--- export streamLinesTextF
--- export streamLinesGzipF
-export writeLinesF
-export hasExtensionF
-export printL
-export isgzF
-export isFastq
-
 
 source Py from "shell.py"
   ( "streamLinesTextF"
   , "streamLinesGzipF"
   , "writeLinesF"
   , "printL"
-  , "isgzF"
+  , "isGzipF"
   , "hasExtensionF"
   , "headF"
   )
@@ -33,20 +22,18 @@ type Py Filename = "str"
 -- streamLinesGzipF Py :: "str" -> "iterator" "str"
 
 writeLinesF :: [Str] -> Filename -> ()
-writeLinesF Py :: ["str"] -> "str" -> "None"
+writeLinesF Py :: ["str"] -> "str" -> ()
 
 printL :: [Str] -> ()
-printL Py :: ["str"] -> "None"
+printL Py :: ["str"] -> ()
 
 isGzipF :: Filename -> Bool
 isGzipF Py :: "str" -> "bool"
 
-isFastqF :: Filename -> Bool
-isFastqF Py :: "str" -> "bool"
-
 hasExtensionF :: Str -> Filename -> Bool
+hasExtensionF Py :: "str" -> "str" -> "bool"
 
 -- headF :: Int -> Filename -> ()
 -- headF Py :: "int" -> "str" -> "None"
 --
--- headF n f = printL (ifelse (isgzF f) (takeS n (streamLinesGzipF f)) (takeS n (streamLinesTextF f)))
+-- headF n f = printL (ifelse (isGzipF f) (takeS n (streamLinesGzipF f)) (takeS n (streamLinesTextF f)))

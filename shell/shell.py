@@ -33,3 +33,16 @@ def isGzipF(filename):
     This is not ideal. It should check for the magic numbers in the binary. But good enough for now.
     """
     return filename[-3:] == ".gz"
+
+def headF(nlines, filename):
+    """
+    Return a list of the first n lines from a file. If the file is gzip'd then unzip it. Stream the file, so it is not all loaded into memory.
+    """
+    if isGzipF(filename):
+        gen = streamLinesGzipF(filename)
+    else:
+        gen = streamLinesTextF(filename)
+    xs = []
+    for _ in range(nlines):
+        xs.append(next(gen))
+    return xs

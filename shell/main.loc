@@ -1,10 +1,14 @@
 module io.shell (*)
+
+import pybase (List, Unit, Str, Bool, Int)
+
 -- import stream (Stream, takeS)
--- import core (ifelse)
+-- import base (ifelse)
 
 source Py from "shell.py"
-  ( "streamLinesTextF"
-  , "streamLinesGzipF"
+  ( "isGzipF"
+  -- , "streamLinesTextF"
+  -- , "streamLinesGzipF"
   , "writeLinesF"
   , "printL"
   , "isGzipF"
@@ -16,24 +20,10 @@ type Filename = Str
 type Py Filename = "str"
 
 -- streamLinesTextF :: Filename -> Stream Str
--- streamLinesTextF Py :: "str" -> "iterator" "str"
---
 -- streamLinesGzipF :: Filename -> Stream Str
--- streamLinesGzipF Py :: "str" -> "iterator" "str"
-
 writeLinesF :: [Str] -> Filename -> ()
-writeLinesF Py :: ["str"] -> "str" -> ()
-
 printL :: [Str] -> ()
-printL Py :: ["str"] -> ()
-
 isGzipF :: Filename -> Bool
-isGzipF Py :: "str" -> "bool"
-
 hasExtensionF :: Str -> Filename -> Bool
-hasExtensionF Py :: "str" -> "str" -> "bool"
-
--- headF :: Int -> Filename -> ()
--- headF Py :: "int" -> "str" -> "None"
---
+headF :: Int -> Filename -> [Str]
 -- headF n f = printL (ifelse (isGzipF f) (takeS n (streamLinesGzipF f)) (takeS n (streamLinesTextF f)))

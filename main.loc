@@ -1,21 +1,27 @@
 module io (*)
 
-import conventions
-import stream
+import conventions (Unit, Str, List, Filename)
 
-type py Filename = "str"
+source Py ("print")
 
-source Py from "main.py" ( )
+print :: Str -> ()
 
--- Call a shell command and return the exit code, stderr and stdout
-shellCmd :: [Str] -> (Int, Str, Str)
+source Py from "main.py" ("mlc_mapIO" as mapIO, "mlc_readlines" as readlines)
 
-writeCreate :: Str -> Filename -> ()
-writeAppend :: Str -> Filename -> ()
-read :: Filename -> Str
+mapIO :: (a -> ()) -> [a] -> ()
 
-cd :: Filename -> ()
-mkdir :: Filename -> ()
-pwd :: () -> String
-mv :: Filename -> Filename -> ()
-cp :: Filename -> Filename -> ()
+readlines :: Filename -> [Str]
+
+
+-- -- Call a shell command and return the exit code, stderr and stdout
+-- shellCmd :: [Str] -> (Int, Str, Str)
+--
+-- writeCreate :: Str -> Filename -> ()
+-- writeAppend :: Str -> Filename -> ()
+-- read :: Filename -> Str
+
+-- cd :: Filename -> ()
+-- mkdir :: Filename -> ()
+-- pwd :: () -> String
+-- mv :: Filename -> Filename -> ()
+-- cp :: Filename -> Filename -> ()

@@ -1,6 +1,6 @@
 module io.shell (*)
 
-import pybase (List, Unit, Str, Bool, Int)
+import conventions (List, Unit, Str, Bool, Int, Unit)
 
 -- import stream (Stream, takeS)
 -- import base (ifelse)
@@ -14,6 +14,7 @@ source Py from "shell.py"
   , "isGzipF"
   , "hasExtensionF"
   , "headF"
+  , "tailF"
   )
 
 type Filename = Str
@@ -26,4 +27,7 @@ printL :: [Str] -> ()
 isGzipF :: Filename -> Bool
 hasExtensionF :: Str -> Filename -> Bool
 headF :: Int -> Filename -> [Str]
+tailF :: Int -> Filename -> [Str]
+nlines :: Filename -> Int
+
 -- headF n f = printL (ifelse (isGzipF f) (takeS n (streamLinesGzipF f)) (takeS n (streamLinesTextF f)))

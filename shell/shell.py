@@ -11,6 +11,12 @@ def streamLinesTextF(filename):
         for line in fh.readlines():
             yield line.strip()
 
+def streamLinesF(filename):
+    if isGzipF(filename):
+        return streamLinesGzipF(filename)
+    else:
+        return streamLinesTextF(filename)
+
 #  writeLinesF :: [Str] -> Filename -> ()
 def writeLinesF(xs, filename):
     with open(filename, "w") as fh:
@@ -38,11 +44,30 @@ def headF(nlines, filename):
     """
     Return a list of the first n lines from a file. If the file is gzip'd then unzip it. Stream the file, so it is not all loaded into memory.
     """
-    if isGzipF(filename):
-        gen = streamLinesGzipF(filename)
-    else:
-        gen = streamLinesTextF(filename)
+    gen = streamLinesF(filename)
     xs = []
     for _ in range(nlines):
         xs.append(next(gen))
     return xs
+
+
+def tailF(nlines, filename):
+    """
+    Return a list of the first n lines from a file. If the file is gzip'd then unzip it. Stream the file, so it is not all loaded into memory.
+    """
+    from collections import deque
+    gen = streamLinesF(filename)
+    xs = deque()
+    for line in gen:
+        xs.append(line)
+        if len(xs) > nlines:
+            xs.popleft()
+    return xs
+
+
+def nlines(filename):
+    gen = streamLinesF(filename)
+    n = 0
+    for _ in gen:
+        n += 1
+    return n

@@ -3,6 +3,10 @@ import subprocess
 import shutil
 import os
 
+def mlc_mapIO(f, xs):
+    for x in xs:
+        f(x)
+
 # shellCmd :: Str -> (Int, Str, Str)
 def mlc_shellCmd(args):
     try:
@@ -26,6 +30,11 @@ def mlc_writeAppend(text, filename):
 def mlc_read(filename):
     with open(filename, "r") as f:
         return f.read()
+
+# read :: Filename -> Stream Str
+def mlc_readlines(filename):
+    with open(filename, "r") as f:
+        return [x for x in f.readlines()]
 
 # cd :: Filename -> ()
 def mlc_cd(path):

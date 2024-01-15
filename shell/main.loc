@@ -18,7 +18,7 @@ source Py from "shell.py"
   )
 
 type Filename = Str
-type Py Filename = "str"
+type Py => Filename = "str"
 
 -- streamLinesTextF :: Filename -> Stream Str
 -- streamLinesGzipF :: Filename -> Stream Str

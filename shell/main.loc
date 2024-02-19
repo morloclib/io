@@ -1,6 +1,6 @@
 module io.shell (*)
 
-import conventions (List, Unit, Str, Bool, Int, Unit)
+import types (List, Unit, Str, Bool, Int, Unit)
 
 -- import stream (Stream, takeS)
 -- import base (ifelse)

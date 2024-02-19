@@ -1,6 +1,6 @@
 module io (*)
 
-import conventions (Unit, Str, List, Filename)
+import types (Unit, Str, List, Filename)
 
 source Py ("print")
 
